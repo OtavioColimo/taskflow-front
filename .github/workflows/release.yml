@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Render
+    name: Deploy to Vercel
     runs-on: ubuntu-latest
 
     steps:
@@ -23,18 +23,23 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Build da aplicação
+      - name: Build
         run: npm run build
+        env:
+          VITE_API_URL: https://taskflow-api.onrender.com
 
-      - name: Disparar deploy no Render
+      - name: Instalar Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy para Vercel (produção)
         run: |
-          curl -s -X POST \
-            "https://api.render.com/v1/services/${{ secrets.SERVICE_ID }}/deploys" \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{"clearCache": false}' \
-            | jq .
+          vercel deploy --prod \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --yes
+        env:
+          VERCEL_ORG_ID:     ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Notificar resultado
         if: success()
-        run: echo "🚀 Deploy da tag ${{ github.ref_name }} disparado com sucesso no Render!"
+        run: echo "🚀 Deploy da tag ${{ github.ref_name }} concluído no Vercel!"

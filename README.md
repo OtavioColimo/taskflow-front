@@ -1,45 +1,107 @@
-# TaskFlow Front
+# TaskFlow Web
 
-Front-end do TaskFlow para gerenciamento de tarefas, desenvolvido com Vite.
+Interface web do TaskFlow para gerenciamento de tarefas, desenvolvida com React + Vite e integrada à TaskFlow API.
 
 ## Stack
 
-- **Framework:** Vite
-- **Runtime:** Node.js ≥ 18
-- **Deploy:** Render
+- **Framework:** React
+- **Build Tool:** Vite
+- **HTTP Client:** Axios
+- **Estilos:** CSS Modules
+- **Deploy:** Vercel
 - **CI/CD:** GitHub Actions (trigger via SemVer tags)
+
+---
 
 ## Instalação
 
 ```bash
-# Clone o repositório
-git clone https://github.com/OtavioColimo/taskflow-front.git
-cd taskflow-front
-
-# Instale as dependências
+git clone https://github.com/seu-usuario/taskflow-web.git
+cd taskflow-web
 npm install
-
-# Inicie em modo desenvolvimento
+cp .env.example .env
 npm run dev
 ```
 
-## Deployment
+---
 
-### Release via Tags
+## Variáveis de Ambiente
 
-1. Crie uma tag com versionamento semântico:
+| Variável        | Descrição                  | Padrão                              |
+|-----------------|----------------------------|-------------------------------------|
+| `VITE_API_URL`  | URL base da TaskFlow API   | `https://taskflow-api.onrender.com` |
+
+---
+
+## Scripts
+
+| Comando           | Descrição                   |
+|-------------------|-----------------------------|
+| `npm run dev`     | Servidor de desenvolvimento |
+| `npm run build`   | Build de produção           |
+| `npm run preview` | Preview do build            |
+
+---
+
+## Estrutura do Projeto
+
+```
+taskflow-web/
+├── .github/workflows/release.yml   # CI/CD — deploy no Vercel via tag
+├── src/
+│   ├── components/
+│   │   ├── Navbar/
+│   │   ├── TaskCard/
+│   │   ├── TaskList/
+│   │   ├── TaskForm/
+│   │   ├── Loading/
+│   │   └── ErrorMessage/
+│   ├── pages/
+│   │   ├── Home/
+│   │   ├── CreateTask/
+│   │   └── EditTask/
+│   ├── services/
+│   │   ├── api.js
+│   │   └── tasks.service.js
+│   ├── hooks/
+│   │   └── useTasks.js
+│   ├── utils/
+│   │   └── formatDate.js
+│   ├── styles/
+│   │   └── global.css
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── vite.config.js
+├── .env.example
+└── package.json
+```
+
+---
+
+## CI/CD — GitHub Actions + Vercel
+
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
+# O workflow faz build e deploy automático no Vercel
 ```
 
-2. O GitHub Actions dispara automaticamente:
-   - Instala dependências
-   - Faz build da aplicação
-   - Dispara deploy no Render
+### Secrets necessários no GitHub
 
-### Variáveis de Ambiente Necessárias
+| Secret               | Descrição                   |
+|----------------------|-----------------------------|
+| `VERCEL_TOKEN`       | Token de acesso da Vercel   |
+| `VERCEL_ORG_ID`      | ID da organização no Vercel |
+| `VERCEL_PROJECT_ID`  | ID do projeto no Vercel     |
 
-No Render, configure os secrets do GitHub Actions:
-- `SERVICE_ID`: ID do serviço no Render
-- `RENDER_API_KEY`: Chave de API do Render
+---
+
+## Commits Semânticos
+
+```
+feat: nova funcionalidade
+fix: correção de bug
+ci: mudanças no pipeline
+docs: atualização de documentação
+```

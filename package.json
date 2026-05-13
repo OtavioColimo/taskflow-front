@@ -1,18 +1,21 @@
 {
-  "name": "taskflow-front",
+  "name": "taskflow-web",
   "version": "1.0.0",
-  "description": "Front-end do TaskFlow para gerenciamento de tarefas",
-  "main": "index.js",
+  "description": "Interface web do TaskFlow para gerenciamento de tarefas",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "start": "node server.js"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "latest"
+    "axios": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "latest",
     "vite": "latest"
   },
   "engines": {

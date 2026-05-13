@@ -1,0 +1,49 @@
+.wrapper { display: flex; flex-direction: column; gap: 40px; }
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.list { display: flex; flex-direction: column; gap: 10px; }
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 80px 0;
+  text-align: center;
+  color: var(--text-2);
+}
+.emptyIcon {
+  font-size: 36px;
+  color: var(--accent);
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 4px;
+}
+.empty small { color: var(--text-3); font-size: 13px; }

@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.icon {
+  font-size: 28px;
+  color: var(--danger);
+}
+
+.text {
+  color: var(--text-2);
+  font-size: 14px;
+  max-width: 320px;
+}
+
+.retry {
+  margin-top: 4px;
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  font-size: 13px;
+  font-weight: 500;
+  transition: border-color var(--transition), background var(--transition);
+}
+.retry:hover {
+  border-color: var(--accent);
+  background: rgba(232, 255, 71, 0.06);
+}

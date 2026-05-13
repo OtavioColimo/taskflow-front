@@ -1,0 +1,123 @@
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  animation: fadeUp 280ms ease both;
+}
+.card:hover {
+  border-color: rgba(232, 255, 71, 0.3);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+.card.done {
+  cursor: default;
+  opacity: 0.55;
+}
+.card.done:hover {
+  transform: none;
+  border-color: var(--border);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Check button ───────────────────────── */
+.left { flex-shrink: 0; padding-top: 2px; }
+
+.check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition), background var(--transition);
+  flex-shrink: 0;
+}
+.check:hover { border-color: var(--accent); }
+.check.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkIcon {
+  font-size: 11px;
+  color: #0c0c0f;
+  font-weight: 700;
+}
+
+/* ── Body ───────────────────────────────── */
+.body { flex: 1; min-width: 0; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.done .title { text-decoration: line-through; }
+
+.desc {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.date {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Actions ───────────────────────────── */
+.actions {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity var(--transition);
+  flex-shrink: 0;
+}
+.card:hover .actions { opacity: 1; }
+
+.editBtn, .deleteBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-2);
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.editBtn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(232, 255, 71, 0.06);
+}
+.deleteBtn:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: rgba(255, 71, 87, 0.06);
+}
