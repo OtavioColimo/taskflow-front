@@ -11,35 +11,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
+      - name: 📦 Checkout código
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: 🔧 Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
 
-      - name: Instalar dependências
+      - name: 📥 Instalar dependências
         run: npm ci
 
-      - name: Build
+      - name: 🏗️ Build React/Vite
         run: npm run build
         env:
           VITE_API_URL: https://taskflow-api.onrender.com
 
-      - name: Instalar Vercel CLI
-        run: npm install -g vercel
-
-      - name: Deploy para Vercel (produção)
+      - name: 🚀 Deploy para Vercel
         run: |
-          vercel deploy --prod \
+          npm install -g vercel@latest
+          vercel deploy \
+            --prod \
             --token=${{ secrets.VERCEL_TOKEN }} \
-            --yes
+            --yes \
+            --build-env VITE_API_URL=https://taskflow-api.onrender.com
         env:
-          VERCEL_ORG_ID:     ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Notificar resultado
+      - name: ✅ Sucesso!
         if: success()
-        run: echo "🚀 Deploy da tag ${{ github.ref_name }} concluído no Vercel!"
+        run: echo "🚀 Deploy da tag ${{ github.ref_name }} concluído com sucesso!"
+
+      - name: ❌ Falha
+        if: failure()
+        run: echo "Deploy falhou para a tag ${{ github.ref_name }}"
