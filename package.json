@@ -1,0 +1,21 @@
+{
+  "name": "taskflow-front",
+  "version": "1.0.0",
+  "description": "Front-end do TaskFlow para gerenciamento de tarefas",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "latest"
+  },
+  "devDependencies": {
+    "vite": "latest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
